@@ -55,6 +55,10 @@ class SystemAPI(KatelloAPI):
         path = "/api/systems/" + u_str(system_uuid)
         return self.server.DELETE(path)[1]
 
+    def auto_attach(self, system_uuid):
+        path = "/candlepin/owners/%s/entitlements" % u_str(system_uuid)
+        return self.server.POST(path)[1]
+
     # checkin_time - datetime or None (default)
     def checkin(self, system_uuid, checkin_time=None):
         path = "/api/systems/%s/checkin" % u_str(system_uuid)
